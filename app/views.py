@@ -54,9 +54,14 @@ def login():
 
             # remember to flash a message to the user
             flash('Log in successful.', 'success')
-            return redirect(url_for("secure-page"))  # they should be redirected to a secure-page route instead
+            return redirect(url_for("secure_page"))  # they should be redirected to a secure-page route instead
     return render_template("login.html", form=form)
 
+@app.route('/secure-page')
+@login_required
+def secure_page():
+    """Render the website's about page."""
+    return render_template('secure_page.html')
 
 # user_loader callback. This callback is used to reload the user object from
 # the user ID stored in the session
